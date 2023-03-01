@@ -117,17 +117,19 @@ class TransactionController extends Controller
             }
         }
 
-        $td_id = explode(',', $request->td_id);
-        foreach ($td_id as $value) {
-            $td = TransactionDetail::find($value);
-            $td->delete();
+        if ($request->td_id) {
+            $td_id = explode(',', $request->td_id);
+            foreach ($td_id as $value) {
+                $td = TransactionDetail::find($value);
+                $td->delete();
 
-            if (!$td) {
-                DB::rollback();
-                return response()->json([
-                    'status' => false,
-                    'message'     => $td
-                ], 400);
+                if (!$td) {
+                    DB::rollback();
+                    return response()->json([
+                        'status' => false,
+                        'message'     => $td
+                    ], 400);
+                }
             }
         }
 
