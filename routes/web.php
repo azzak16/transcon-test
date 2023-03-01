@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction.index');
+Route::get('/', [TransactionController::class, 'index'])->name('transaction.index');
 Route::get('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
 Route::post('/transaction', [TransactionController::class, 'store'])->name('transaction.store');
 Route::get('/transaction/edit/{id}', [TransactionController::class, 'edit'])->name('transaction.edit');

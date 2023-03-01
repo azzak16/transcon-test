@@ -20,7 +20,7 @@
                 <th>Total Quantity</th>
                 <th>Action</th>
             </tr>
-            @foreach ($datas as $data)
+            @forelse ($datas as $data)
             <tr id="row_{{ $data->id }}">
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $data->no_transaction }}</td>
@@ -32,7 +32,9 @@
                     <a href="#" class="delete" data-id="{{ $data->id }}">delete</a>
                 </td>
             </tr>
-            @endforeach
+            @empty
+                <h3 class="text-center">Data kosong coba buat baru</p>
+            @endforelse
         </table>
     </div>
 
